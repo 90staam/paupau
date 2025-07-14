@@ -2,126 +2,170 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Malla Psicopedagogía</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Malla Psicopedagogía Interactiva</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
-      background: #f0f0f0;
+      background: #f9f6f9;
       margin: 0;
       padding: 20px;
+      color: #333;
     }
     h1 {
-      margin-bottom: 30px;
+      text-align: center;
+      color: #8e44ad;
     }
-    .grid {
+    .container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 15px;
+      gap: 30px;
+    }
+    .bimestre {
+      background: #fceefc;
+      border-radius: 10px;
+      padding: 15px;
+      width: 200px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .bimestre h2 {
+      text-align: center;
+      color: #c4458d;
     }
     .asignatura {
-      background-color: #6c63ff;
+      background-color: #a678b7;
       color: white;
-      padding: 15px;
-      border-radius: 8px;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      width: 100%;
+      border-radius: 6px;
       cursor: pointer;
-      width: 160px;
-      font-weight: bold;
+      transition: background-color 0.3s;
     }
-    .detalle {
-      margin-top: 40px;
-      padding: 20px;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0px 0px 10px #ccc;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      display: none;
+    .asignatura.checked {
+      background-color: #e5b4cf;
+      text-decoration: line-through;
     }
   </style>
 </head>
 <body>
   <h1>Malla Psicopedagogía</h1>
-  <div class="grid">
-    <div class="asignatura" onclick="mostrarDetalle('MAT0002')">MAT0002</div>
-    <div class="asignatura" onclick="mostrarDetalle('TDI002')">TDI002</div>
-    <div class="asignatura" onclick="mostrarDetalle('CYR1006')">CYR1006</div>
-    <div class="asignatura" onclick="mostrarDetalle('ADM3002')">ADM3002</div>
-    <div class="asignatura" onclick="mostrarDetalle('CDC2002')">CDC2002</div>
-    <div class="asignatura" onclick="mostrarDetalle('ADE2002')">ADE2002</div>
-    <div class="asignatura" onclick="mostrarDetalle('PDA1007')">PDA1007</div>
-    <div class="asignatura" onclick="mostrarDetalle('EMD2002')">EMD2002</div>
-    <div class="asignatura" onclick="mostrarDetalle('TAD2002')">TAD2002</div>
-    <div class="asignatura" onclick="mostrarDetalle('EID4007')">EID4007</div>
-    <div class="asignatura" onclick="mostrarDetalle('IPI1002')">IPI1002</div>
-    <div class="asignatura" onclick="mostrarDetalle('PAJ3002')">PAJ3002</div>
-    <div class="asignatura" onclick="mostrarDetalle('EPE4002')">EPE4002</div>
-    <div class="asignatura" onclick="mostrarDetalle('IPE4002')">IPE4002</div>
-    <div class="asignatura" onclick="mostrarDetalle('TPE4002')">TPE4002</div>
-  </div>
-  <div id="detalle" class="detalle"></div>
+  <div class="container" id="malla"></div>
 
   <script>
-    function mostrarDetalle(codigo) {
-      const detalle = document.getElementById("detalle");
-      let contenido = "";
+    const mallaData = {
+      "Bimestre 1": [
+        "MAT0002 - Nivelación de Matemática",
+        "TDI002 - TIC Aplicadas a la Diversidad",
+        "CYR1006 - Comunicación y Redacción"
+      ],
+      "Bimestre 2": [
+        "ADM3002 - Administración",
+        "CDC2002 - Currículum Diversificación Curricular",
+        "ADE2002 - Aprendizaje y Dificultades en Lectura y Escritura",
+        "PDA1007 - Psicología del Desarrollo y Aprendizaje"
+      ],
+      "Bimestre 3": [
+        "EMD2002 - Elaboración de Materiales Diversificados",
+        "TAD2002 - Taller Evaluación e Intervención Psicopedagógica",
+        "EID4007 - Evaluación Psicopedagógica de la Lectura y la Escritura"
+      ],
+      "Bimestre 4": [
+        "IPI1002 - Introducción a la Psicopedagogía e Inclusión",
+        "PAJ3002 - Procesos Cognitivos y Afectivos Infanto Juveniles"
+      ],
+      "Bimestre 5": [
+        "EPE4002 - Evaluación Psicopedagógica de las Matemáticas",
+        "IPE4002 - Intervención Psicopedagógica de las Matemáticas",
+        "TPE4002 - Práctica Escolar"
+      ],
+      "Bimestre 6": [
+        "BPD3002 - Bases Psiconeurológicas del Desarrollo",
+        "NEU3002 - Neurociencias"
+      ],
+      "Bimestre 7": [
+        "INE2002 - Inclusión y Necesidades Educativas Especiales",
+        "EPM4002 - Evaluación Psicopedagógica Afectivo Social Infanto Juvenil"
+      ],
+      "Bimestre 8": [
+        "IPM7007 - Intervención Psicopedagógica Afectivo Social Infanto Juvenil"
+      ],
+      "Bimestre 9": [
+        "PRE4002 - Procesos Cognitivos del Adulto Mayor"
+      ],
+      "Bimestre 10": [
+        "EPI5002 - Evaluación Psicopedagógica del Adulto Mayor",
+        "ICP5002 - Intervención Psicopedagógica del Adulto Mayor",
+        "GTG6002 - Gerontología"
+      ],
+      "Bimestre 11": [
+        "EPM6002 - Evaluación Cognitiva Psicopedagógica Infanto Juvenil",
+        "EPA5002 - Ética Profesional"
+      ],
+      "Bimestre 12": [
+        "IPA5002 - Intervención Cognitiva Psicopedagógica Infanto Juvenil",
+        "PCA6002 - Psicopedagogía del Adulto Mayor"
+      ],
+      "Bimestre 13": [
+        "IPM6002 - Intervención Psicopedagógica del Adulto Mayor",
+        "PAM6002 - Práctica Adultos Mayores"
+      ],
+      "Bimestre 14": [
+        "CYF7002 - Comunidad y Familia",
+        "APC7002 - Atención Psicopedagógica Comunitaria"
+      ],
+      "Bimestre 15": [
+        "TPA8002 - Taller de Psicopedagogía Aplicado",
+        "EMP002 - Emprendimiento"
+      ],
+      "Bimestre 16": [
+        "SDT6002 - Seminario de Título",
+        "RPC7002 - Redes y Proyectos Comunitarios"
+      ],
+      "Bimestre 17": [
+        "DPC7002 - Desarrollo de Proyectos Comunitarios"
+      ],
+      "Bimestre 18": [
+        "PLB8002 - Psicopedagogía Laboral"
+      ],
+      "Bimestre 19": [
+        "OYL8002 - Organización y Liderazgo"
+      ],
+      "Bimestre 20": [
+        "ETE8007 - Examen de Título"
+      ]
+    };
 
-      switch(codigo) {
-        case "MAT0002":
-          contenido = "<h2>Nivelación de Matemática</h2><p>Horas: 72 | Bimestre 1</p>";
-          break;
-        case "TDI002":
-          contenido = "<h2>TIC Aplicadas a la Diversidad</h2><p>Horas: 54 | Bimestre 1</p>";
-          break;
-        case "CYR1006":
-          contenido = "<h2>Comunicación y Redacción</h2><p>Horas: 54 | Bimestre 1</p>";
-          break;
-        case "ADM3002":
-          contenido = "<h2>Administración</h2><p>Horas: 72 | Bimestre 2</p>";
-          break;
-        case "CDC2002":
-          contenido = "<h2>Currículum Diversificación Curricular</h2><p>Horas: 90 | Bimestre 2</p>";
-          break;
-        case "ADE2002":
-          contenido = "<h2>Aprendizaje y Dificultades en Lectura y Escritura</h2><p>Horas: 72 | Bimestre 2</p>";
-          break;
-        case "PDA1007":
-          contenido = "<h2>Psicología del Desarrollo y Aprendizaje</h2><p>Horas: 90 | Bimestre 2</p>";
-          break;
-        case "EMD2002":
-          contenido = "<h2>Elaboración de Materiales Diversificados</h2><p>Horas: 72 | Bimestre 3</p>";
-          break;
-        case "TAD2002":
-          contenido = "<h2>Taller Evaluación e Intervención Psicopedagógica</h2><p>Horas: 72 | Bimestre 3</p>";
-          break;
-        case "EID4007":
-          contenido = "<h2>Evaluación Psicopedagógica de la Lectura y la Escritura</h2><p>Horas: 90 | Bimestre 3</p>";
-          break;
-        case "IPI1002":
-          contenido = "<h2>Introducción a la Psicopedagogía e Inclusión</h2><p>Horas: 90 | Bimestre 4</p>";
-          break;
-        case "PAJ3002":
-          contenido = "<h2>Procesos Cognitivos y Afectivos Infanto Juveniles</h2><p>Horas: 90 | Bimestre 4</p>";
-          break;
-        case "EPE4002":
-          contenido = "<h2>Evaluación Psicopedagógica de las Matemáticas</h2><p>Horas: 108 | Bimestre 5</p>";
-          break;
-        case "IPE4002":
-          contenido = "<h2>Intervención Psicopedagógica de las Matemáticas</h2><p>Horas: 90 | Bimestre 5</p>";
-          break;
-        case "TPE4002":
-          contenido = "<h2>Práctica Escolar</h2><p>Horas: 108 | Bimestre 5</p>";
-          break;
-        default:
-          contenido = "<p>Información no disponible.</p>";
-      }
+    const container = document.getElementById("malla");
 
-      detalle.innerHTML = contenido;
-      detalle.style.display = "block";
-    }
+    Object.entries(mallaData).forEach(([bimestre, asignaturas]) => {
+      const bimestreDiv = document.createElement("div");
+      bimestreDiv.className = "bimestre";
+      const title = document.createElement("h2");
+      title.textContent = bimestre;
+      bimestreDiv.appendChild(title);
+
+      asignaturas.forEach(asig => {
+        const btn = document.createElement("button");
+        btn.className = "asignatura";
+        btn.textContent = asig;
+
+        const key = `asig-${asig}`;
+        if (localStorage.getItem(key) === "checked") {
+          btn.classList.add("checked");
+        }
+
+        btn.addEventListener("click", () => {
+          btn.classList.toggle("checked");
+          localStorage.setItem(key, btn.classList.contains("checked") ? "checked" : "");
+        });
+
+        bimestreDiv.appendChild(btn);
+      });
+
+      container.appendChild(bimestreDiv);
+    });
   </script>
 </body>
 </html>
