@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Malla Psicopedagogía</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 30px;
+    }
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+    .asignatura {
+      background-color: #6c63ff;
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 160px;
+      font-weight: bold;
+    }
+    .detalle {
+      margin-top: 40px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px #ccc;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Malla Psicopedagogía</h1>
+  <div class="grid">
+    <div class="asignatura" onclick="mostrarDetalle('MAT0002')">MAT0002</div>
+    <div class="asignatura" onclick="mostrarDetalle('TDI002')">TDI002</div>
+    <div class="asignatura" onclick="mostrarDetalle('CYR1006')">CYR1006</div>
+    <div class="asignatura" onclick="mostrarDetalle('ADM3002')">ADM3002</div>
+    <div class="asignatura" onclick="mostrarDetalle('CDC2002')">CDC2002</div>
+    <div class="asignatura" onclick="mostrarDetalle('ADE2002')">ADE2002</div>
+    <div class="asignatura" onclick="mostrarDetalle('PDA1007')">PDA1007</div>
+    <div class="asignatura" onclick="mostrarDetalle('EMD2002')">EMD2002</div>
+    <div class="asignatura" onclick="mostrarDetalle('TAD2002')">TAD2002</div>
+    <div class="asignatura" onclick="mostrarDetalle('EID4007')">EID4007</div>
+    <div class="asignatura" onclick="mostrarDetalle('IPI1002')">IPI1002</div>
+    <div class="asignatura" onclick="mostrarDetalle('PAJ3002')">PAJ3002</div>
+    <div class="asignatura" onclick="mostrarDetalle('EPE4002')">EPE4002</div>
+    <div class="asignatura" onclick="mostrarDetalle('IPE4002')">IPE4002</div>
+    <div class="asignatura" onclick="mostrarDetalle('TPE4002')">TPE4002</div>
+  </div>
+  <div id="detalle" class="detalle"></div>
+
+  <script>
+    function mostrarDetalle(codigo) {
+      const detalle = document.getElementById("detalle");
+      let contenido = "";
+
+      switch(codigo) {
+        case "MAT0002":
+          contenido = "<h2>Nivelación de Matemática</h2><p>Horas: 72 | Bimestre 1</p>";
+          break;
+        case "TDI002":
+          contenido = "<h2>TIC Aplicadas a la Diversidad</h2><p>Horas: 54 | Bimestre 1</p>";
+          break;
+        case "CYR1006":
+          contenido = "<h2>Comunicación y Redacción</h2><p>Horas: 54 | Bimestre 1</p>";
+          break;
+        case "ADM3002":
+          contenido = "<h2>Administración</h2><p>Horas: 72 | Bimestre 2</p>";
+          break;
+        case "CDC2002":
+          contenido = "<h2>Currículum Diversificación Curricular</h2><p>Horas: 90 | Bimestre 2</p>";
+          break;
+        case "ADE2002":
+          contenido = "<h2>Aprendizaje y Dificultades en Lectura y Escritura</h2><p>Horas: 72 | Bimestre 2</p>";
+          break;
+        case "PDA1007":
+          contenido = "<h2>Psicología del Desarrollo y Aprendizaje</h2><p>Horas: 90 | Bimestre 2</p>";
+          break;
+        case "EMD2002":
+          contenido = "<h2>Elaboración de Materiales Diversificados</h2><p>Horas: 72 | Bimestre 3</p>";
+          break;
+        case "TAD2002":
+          contenido = "<h2>Taller Evaluación e Intervención Psicopedagógica</h2><p>Horas: 72 | Bimestre 3</p>";
+          break;
+        case "EID4007":
+          contenido = "<h2>Evaluación Psicopedagógica de la Lectura y la Escritura</h2><p>Horas: 90 | Bimestre 3</p>";
+          break;
+        case "IPI1002":
+          contenido = "<h2>Introducción a la Psicopedagogía e Inclusión</h2><p>Horas: 90 | Bimestre 4</p>";
+          break;
+        case "PAJ3002":
+          contenido = "<h2>Procesos Cognitivos y Afectivos Infanto Juveniles</h2><p>Horas: 90 | Bimestre 4</p>";
+          break;
+        case "EPE4002":
+          contenido = "<h2>Evaluación Psicopedagógica de las Matemáticas</h2><p>Horas: 108 | Bimestre 5</p>";
+          break;
+        case "IPE4002":
+          contenido = "<h2>Intervención Psicopedagógica de las Matemáticas</h2><p>Horas: 90 | Bimestre 5</p>";
+          break;
+        case "TPE4002":
+          contenido = "<h2>Práctica Escolar</h2><p>Horas: 108 | Bimestre 5</p>";
+          break;
+        default:
+          contenido = "<p>Información no disponible.</p>";
+      }
+
+      detalle.innerHTML = contenido;
+      detalle.style.display = "block";
+    }
+  </script>
+</body>
+</html>
